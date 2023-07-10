@@ -9,6 +9,13 @@ export default function BatteryInfo({ navigation }) {
   const [background, setBackground] = useState();
   const [textoBateria, setTextoBateria] = useState("");
 
+  const [headerColor, setHeaderColor] = useState("#0000ff");
+
+  // Função para mudar a cor do header
+  const changeHeaderColor = (color) => {
+    setHeaderColor(color);
+  };
+
   const mudarCor = () => {
     if (nivelBateria < 20) {
       setBackground("#fc0b03");
@@ -68,7 +75,7 @@ export default function BatteryInfo({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <Header title="Bateria" />
+      <Header title="Bateria" backgroundColor={headerColor}/>
       <Text style={styles.content}>{nivelBateria}%</Text>
       <View style={{ backgroundColor: background, width: 800, height: 50 }}>
         <Text style={{}}>{textoBateria}</Text>

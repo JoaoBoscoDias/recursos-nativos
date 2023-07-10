@@ -1,42 +1,54 @@
 import { Button, StyleSheet, Text, View } from "react-native";
 import * as Device from 'expo-device';
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+import { useState } from "react";
 
 const styles = StyleSheet.create({
-    title: {
-        backgroundColor: "purple",
-        fontSize: 25,
-        padding: 10,
-    },
+    container: {
+        flex: 1,
+        gap: 10,
+      },
+    
+      content: {
+        backgroundColor: "#969",
+        padding: 20,
+        // alignSelf: "center",
 
-    estilo: {
-        fontSize: 15,
-        backgroundColor: "yellow",
-        padding: 10,
-        top: 10,
-        bottom: 10,
-        margin: 10,
-    },
-
-    botao: {
-        backgroundColor: "red",
-        padding: 10,
-        margin: 10,
-        top: 10,
-    },
+      },
+    
+      contentTextStyle: {
+        padding: 5,
+        textAlignVertical: "center",
+        minHeight: 50,
+        backgroundColor: "#969",
+        color: "white",
+        fontWeight: "bold",
+        fontSize: 18,
+        textAlign: "center",
+      },
 })
 
 export default function DeviceInfo() {
+  const [headerColor, setHeaderColor] = useState("#8a2be2");
+
+  // Função para mudar a cor do header
+  const changeHeaderColor = (color) => {
+    setHeaderColor(color);
+  };
     return (
-            <View>
-                <Text style={styles.title}>Informações do dispositivo</Text>
-                <Text style={styles.estilo}>O seu dispositivo é:{Device.modelName}</Text>
-                <Text style={styles.estilo}>O seu dispositivo é:{Device.modelId}</Text>
-                <Text style={styles.estilo}>O seu dispositivo é:{Device.osName}</Text>
-                <Text style={styles.estilo}>O seu dispositivo é:{Device.osVersion}</Text>
-                <Text style={styles.estilo}>O seu dispositivo é:{Device.designName}</Text>
-                <Text style={styles.estilo}>O seu dispositivo é:{Device.deviceName}</Text>
-                <Text style={styles.estilo}>O seu dispositivo é:{Device.deviceYearClass}</Text>
-                <Button style={styles.botao} title="Saida" />
+            <View style={styles.container}>
+                <Header title="Informaçoes do App" backgroundColor={headerColor}/>
+                <Text style={styles.content}>Informações do dispositivo</Text>
+                <Text style={styles.content}>O seu dispositivo é:{Device.modelName}</Text>
+                <Text style={styles.content}>O seu dispositivo é:{Device.modelId}</Text>
+                <Text style={styles.content}>O seu dispositivo é:{Device.osName}</Text>
+                <Text style={styles.content}>O seu dispositivo é:{Device.osVersion}</Text>
+                <Text style={styles.content}>O seu dispositivo é:{Device.designName}</Text>
+                <Text style={styles.content}>O seu dispositivo é:{Device.deviceName}</Text>
+                <Text style={styles.content}>O seu dispositivo é:{Device.deviceYearClass}</Text>
+                <Button title="Saida" />
+                <Footer />
             </View>
     )
 }
